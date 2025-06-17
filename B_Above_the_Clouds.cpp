@@ -12,35 +12,44 @@ using namespace std;
 #define MOD 1e9 + 7
 #define mod 998244353
 
-void solve()
+void solve() 
 {
+    int n;
     string s;
-    cin >> s;
-    int n = s.size();
+    cin >> n >> s;
 
-    vector<int> cnt(10, 0); // digit frequency
+    for(int i = 1; i <= n-2; ++i) 
+    {
+        char b = s[i];
+        bool is = false;
 
-    // Traverse from right to left
-    string res = "";
-    for (int i = n - 1; i >= 0; --i) {
-        int d = s[i] - '0';
-        // Check if there is a digit ahead which is smaller
-        bool push_right = false;
-        for (int j = i + 1; j < n; ++j) {
-            if (s[j] - '0' > d) {
-                push_right = true;
+        for(int j = 0; j < i; ++j) 
+        {
+            if (s[j] == b) 
+            {
+                is = true;
                 break;
             }
         }
-        if (push_right && d < 9) d++; 
-        cnt[d]++;
+        if(!is) 
+        {
+            for(int j = i+1; j < n; ++j) 
+            {
+                if (s[j] == b) 
+                {
+                    is = true;
+                    break;
+                }
+            }
+        }
+        if(is) 
+        {
+            cout << "Yes\n";
+            return;
+        }
     }
 
-    for (int d = 9; d >= 0; --d) {
-        res += string(cnt[d], d + '0');
-    }
-
-    cout << res << '\n';
+    cout << "No\n";
 }
 
 int32_t main()

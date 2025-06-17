@@ -12,37 +12,28 @@ using namespace std;
 #define MOD 1e9 + 7
 #define mod 998244353
 
-void solve() 
+void solve()
 {
     int n;
     cin >> n;
-    vector<int> v(n+1);
-    int sum = 0, e = 0, o = 0;
-    
-    for(int i = 1; i <= n; i++)
+
+
+    vi v(n);
+    map<int,int> mp;
+    for(int i = 0; i<n; i++)
     {
         cin >> v[i];
-        if(i % 2 != 0) o += v[i];
-        else e += v[i];
-
-        sum += v[i];
+        mp[v[i]]++;
     }
 
-    if(sum % n == 0)
+    int ans = 0;
+    for(auto i : mp)
     {
-        int on = (n + 1) / 2;
-        int en = n - on;
-        int avg = sum / n;
-
-        if(o == on * avg && e == en * avg)
-        {
-            cout << "YES\n";
-            return;
-        }
+        ans = ans + (i.second)/2;
     }
-    cout << "NO\n";
+    cout << ans << endl;
+    
 }
-
 
 int32_t main()
 {
