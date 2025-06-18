@@ -11,38 +11,36 @@ using namespace std;
 #define pq_min priority_queue<int, vector<int>, greater<int>>
 #define MOD 1e9 + 7
 #define mod 998244353
-char getchar(char prev, char post)
-{
-    for(char i = 'a'; i<='z'; i++)
-    {
-        if(i != prev && i != post)
-        {
-            return i;
-        }
-    }
-}
+
 void solve()
 {
-    string s;
-    cin >> s;
+    int n,k;
+    cin >> n >> k;
 
-    vector<char> post;
-    for(int i = 0; i<s.size()-1; i++)
+    vi v(n);
+    for(int i = 0; i<n; i++)
     {
-        post.pb(s[i+1]);
+        cin >> v[i];
     }
-    post.pb('.');
-    char prev = s[0];
-    for(int i = 1; i<s.size(); i++)
+
+    vi pref(n);
+    pref[0] = v[0];
+    for(int i = 1; i<n; i++)
     {
-        if(s[i] == prev)
+        pref[i] = pref[i-1] + v[i];
+    }
+    int sum = 0;
+    
+    for(int i = k-1; i<n; i++)
+    {
+        if(i == k-1) sum += pref[i];
+        else
         {
-            prev = getchar(s[i],post[i]);
-            s[i] = prev;
+            sum = sum + (pref[i] - pref[i-k]);
         }
-        else prev = s[i];
     }
-    cout << s << "\n";
+    double ans = (double)sum/(n-k+1);
+    cout << fixed << setprecision(10) << ans << "\n";
 }
 
 int32_t main()
@@ -52,9 +50,8 @@ int32_t main()
     // cin >> t;
     // while(t--)
     // {
-    //     solve();
-    // }
-    solve();
+        solve();
+    //}
 
     return 0;
 }

@@ -41,16 +41,31 @@ void solve()
             }
         }
     }
-
-    
+    // for(auto i : vp) cout << i.first << " " << i.second <<  " ";
+    int fl = 0;
 
     for(int r = 1; r <= n; ++r)
     {
         for(int c = 1; c <= m; ++c)
         {
+            int ans = 0;
+           for(int i = 0; i<vp.size(); i++)
+            {
+                if(vp[i].first == r || vp[i].second  == c)
+                {
+                    ++ans;
+                }
+            } 
+            if(ans == vp.size())
+            {
+               fl = 1;
+               break; 
+            }
             
         }
     }
+    if(fl) cout << mx-1 << "\n";
+    else cout << mx << "\n";
 
 
 
