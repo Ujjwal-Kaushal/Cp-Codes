@@ -14,37 +14,47 @@ using namespace std;
 
 void solve()
 {
-    int w,h,a,b;
-    cin >> w >> h >> a >> b;
+    int n;
+    cin >> n;
 
-    int x1,y1,x2,y2;
-    cin >> x1 >> y1 >> x2 >> y2;
+    vi v(n);
 
-    int is = 0;
-    if(x1 == x2)
+    for(int i = 0; i<n; i++)
     {
-        if((y2 - y1) % b == 0) is = 1;
+        cin >> v[i];
     }
-    else if(y1 == y2)
+
+    int sum = 0;
+    for(int i = 0; i<n; i++)
     {
-        if((x2 - x1) % a == 0) is = 1;
-    }
-    else
-    {
-        if((x2 - x1) % a == 0 || (y2 - y1) % b == 0)
+        sum += v[i];
+        if(sum <= 0)
         {
-            is = 1;
+            cout << "NO\n";
+            return;
         }
     }
-    if(is) cout << "YES\n";
-    else cout << "NO\n";
-}       
+    sum = 0;
+    for(int i = n-1; i>=0; i--)
+    {
+        sum += v[i];
+        if(sum <= 0)
+        {
+            cout << "NO\n";
+            return;
+        }
+    }
+    
+    cout << "YES\n";
+
+}
 
 int32_t main()
 {
     fastIO;
     int t;
     cin >> t;
+
     while(t--)
     {
         solve();

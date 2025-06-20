@@ -17,57 +17,71 @@ void solve()
     int n, m;
     cin >> n >> m;
     
-    int v[n+1][m+1];
+    int a[n][m];
     int mx = INT_MIN;
-    for(int i = 1; i<=n; i++)
-    {
-        for(int j = 1; j<=m; j++)
-        {
-            int a;
-            cin >> a;
-            v[i][j] = a;
-            mx = max(mx,v[i][j]);
-        }
-    }
-    vector<pair<int,int>> vp;
-    
-    for(int i = 1; i<=n ;i++)
-    {
-        for(int j = 1; j<=m; j++)
-        {
-            if(v[i][j] == mx)
-            {
-                vp.pb({i,j});
-            }
-        }
-    }
-    // for(auto i : vp) cout << i.first << " " << i.second <<  " ";
-    int fl = 0;
 
-    for(int r = 1; r <= n; ++r)
+    for(int i = 0; i<n; i++)
     {
-        for(int c = 1; c <= m; ++c)
+        for(int j = 0; j<m; j++)
         {
-            int ans = 0;
-           for(int i = 0; i<vp.size(); i++)
+            cin >> a[i][j];
+            if(a[i][j] > mx) mx = a[i][j];
+        }
+    }
+
+    vector<int> v1(n,0),v2(m,0);
+
+    for(int i = 0; i<n; i++)
+    {
+        for(int j = 0; j<m; j++)
+        {
+            if(a[i][j] == mx)
             {
-                if(vp[i].first == r || vp[i].second  == c)
-                {
-                    ++ans;
-                }
-            } 
-            if(ans == vp.size())
-            {
-               fl = 1;
-               break; 
+                v1[i]++;
             }
-            
+        }
+    }
+    
+    for(int i = 0; i<m; i++)
+    {
+        for(int j = 0; j<n; j++)
+        {
+            if(a[j][i] == mx)
+            {
+                v2[i]++;
+            }
+        }
+    }
+
+    int cnt = 0;
+    for(int i = 0; i<n; i++)
+    {
+        for(int j = 0; j<m; j++)
+        {
+            if(a[i][j] == mx)
+                ++cnt;
+        }
+    }
+
+    int fl = 0;
+    for(int i = 0; i<n; i++)
+    {
+        for(int j = 0; j<m; j++)
+        {
+            int overlap = 0;
+            if(a[i][j] == mx)
+            {
+                overlap = 1;
+            }
+            if(v1[i] + v2[j] - overlap == cnt)
+            {
+                fl = 1;
+                break;
+            }
         }
     }
     if(fl) cout << mx-1 << "\n";
     else cout << mx << "\n";
-
-
 
 }
 

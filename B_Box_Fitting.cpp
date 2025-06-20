@@ -14,31 +14,38 @@ using namespace std;
 
 void solve()
 {
-    int w,h,a,b;
-    cin >> w >> h >> a >> b;
+    int n, w;
+    cin >> n >> w;
+    
+    vi v(n);
+    for(int i = 0; i<n; i++) cin >> v[i];
 
-    int x1,y1,x2,y2;
-    cin >> x1 >> y1 >> x2 >> y2;
-
-    int is = 0;
-    if(x1 == x2)
+    multiset<int> ms;
+    for(int i = 0; i<n; i++)
     {
-        if((y2 - y1) % b == 0) is = 1;
+        ms.insert(v[i]);
     }
-    else if(y1 == y2)
+    int width = w,ans = 1;
+    while(!ms.empty())
     {
-        if((x2 - x1) % a == 0) is = 1;
-    }
-    else
-    {
-        if((x2 - x1) % a == 0 || (y2 - y1) % b == 0)
+        auto itr = ms.upper_bound(w);
+        if(itr == ms.begin())
         {
-            is = 1;
+            w = width;
+            ++ans;
+        }
+        else
+        {
+            --itr;
+            int val = *itr;
+            w -= val;
+            ms.erase(itr);
         }
     }
-    if(is) cout << "YES\n";
-    else cout << "NO\n";
-}       
+    cout << ans << "\n";
+
+
+}
 
 int32_t main()
 {

@@ -14,31 +14,30 @@ using namespace std;
 
 void solve()
 {
-    int w,h,a,b;
-    cin >> w >> h >> a >> b;
+    int n;
+    cin >> n;
 
-    int x1,y1,x2,y2;
-    cin >> x1 >> y1 >> x2 >> y2;
-
-    int is = 0;
-    if(x1 == x2)
+    vi a(n), b(n);
+    int mn1 = INT_MAX, mn2 = INT_MAX;
+    for(int i = 0; i<n; i++)
     {
-        if((y2 - y1) % b == 0) is = 1;
+        cin >> a[i];
+        if(a[i] < mn1) mn1 = a[i];
     }
-    else if(y1 == y2)
+    for(int i = 0; i<n; i++)
     {
-        if((x2 - x1) % a == 0) is = 1;
+        cin >> b[i];
+        if(b[i] < mn2) mn2 = b[i];
     }
-    else
+    
+    int a1 = 0, a2 = 0;
+    for(int i = 0; i<n; i++)
     {
-        if((x2 - x1) % a == 0 || (y2 - y1) % b == 0)
-        {
-            is = 1;
-        }
+        a1 = a1 + (a[i] + mn2);
+        a2 = a2 + (b[i] + mn1);
     }
-    if(is) cout << "YES\n";
-    else cout << "NO\n";
-}       
+    cout << min(a1,a2) << "\n";
+}
 
 int32_t main()
 {

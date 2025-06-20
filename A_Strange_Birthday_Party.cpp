@@ -14,31 +14,29 @@ using namespace std;
 
 void solve()
 {
-    int w,h,a,b;
-    cin >> w >> h >> a >> b;
+    int n,m;
+    cin >> n >> m;
 
-    int x1,y1,x2,y2;
-    cin >> x1 >> y1 >> x2 >> y2;
+    vi k(n),c(m);
+    for(int i = 0; i<n; i++) cin >> k[i];
+    for(int i = 0; i<m; i++) cin >> c[i];
 
-    int is = 0;
-    if(x1 == x2)
+    sort(k.begin(), k.end());
+    int ans = 0, idx = 0;
+    for(int i = n-1; i>=0; i--)
     {
-        if((y2 - y1) % b == 0) is = 1;
-    }
-    else if(y1 == y2)
-    {
-        if((x2 - x1) % a == 0) is = 1;
-    }
-    else
-    {
-        if((x2 - x1) % a == 0 || (y2 - y1) % b == 0)
+        if(idx < m && idx < k[i] - 1)
         {
-            is = 1;
+            ans = ans + c[idx++];
+        }
+        else
+        {
+            ans = ans + c[k[i] - 1];
         }
     }
-    if(is) cout << "YES\n";
-    else cout << "NO\n";
-}       
+    cout << ans << "\n";
+
+}
 
 int32_t main()
 {
