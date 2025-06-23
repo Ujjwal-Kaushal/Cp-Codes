@@ -13,6 +13,7 @@
         "unordered_set": "cpp",
         "initializer_list": "cpp",
         "regex": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "random": "cpp"
     }
 }
