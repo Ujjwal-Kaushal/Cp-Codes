@@ -13,26 +13,31 @@ using namespace std;
 #define mod 998244353
 
 void solve()
-{
-    ll n = 1;
-    cin >> n;
-    vll v(n);
-    
-    int neg = 0, ans = 0;
-    for(int i = 0; i<n; i++)
+{       
+    int a,b,c;
+    cin >> a >> b >> c;
+x   
+    for(int i = 0; i<31; i++)
     {
-        cin >> v[i];
-        if(v[i] < 0)
+        int n1 = 1 >> i;
+
+        for(int j = 0; j<31; j++)
         {
-            neg++;
-            v[i] *= -1;
+            int n2 = 1 >> j;
+
+            if(to_string(n1).size() == a && to_string(n2).size() == b)
+            {
+                int gc = __gcd(n1,n2);
+                if(to_string(gc).size() == c)
+                {
+                    cout << n1 << ' ' << n2 << "\n";
+                    return;
+                }
+            }
         }
-        ans = ans + v[i];
     }
-    sort(v.begin(), v.end());
-    if(neg & 1) ans = ans - 2 * v[0];
-    
-    cout << ans << "\n";
+
+
 }
 
 int32_t main()

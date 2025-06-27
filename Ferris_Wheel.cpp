@@ -14,36 +14,36 @@ using namespace std;
 
 void solve()
 {
-    ll n = 1;
-    cin >> n;
-    vll v(n);
-    
-    int neg = 0, ans = 0;
-    for(int i = 0; i<n; i++)
-    {
-        cin >> v[i];
-        if(v[i] < 0)
-        {
-            neg++;
-            v[i] *= -1;
-        }
-        ans = ans + v[i];
-    }
+    int n, x;
+    cin >> n >> x;
+
+    vi v(n);
+    for(int i = 0; i<n; i++) cin >> v[i];
+
     sort(v.begin(), v.end());
-    if(neg & 1) ans = ans - 2 * v[0];
-    
-    cout << ans << "\n";
+    int i = 0,j = 0, ans = 0, sum = 0;
+    while(j < n)
+    {
+        sum += v[i];
+        j++;
+        if(sum >= x)
+        {
+            ans++;
+            
+        }
+    }
+
 }
 
 int32_t main()
 {
     fastIO;
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
-
+    // int t;
+    // cin >> t;
+    // while(t--)
+    // {
+    //     solve();
+    // }
+    solve();
     return 0;
 }

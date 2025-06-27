@@ -14,36 +14,38 @@ using namespace std;
 
 void solve()
 {
-    ll n = 1;
+    int n;
     cin >> n;
-    vll v(n);
-    
-    int neg = 0, ans = 0;
-    for(int i = 0; i<n; i++)
+
+    string s;
+    cin >> s;
+
+    if(is_sorted(s.begin(), s.end())) cout << "NO\n";
+    else
     {
-        cin >> v[i];
-        if(v[i] < 0)
-        {
-            neg++;
-            v[i] *= -1;
+        for(int i = 0; i<n-1; i++)
+        { 
+            if(s[i] != s[i+1] && s[i] > s[i+1])
+            {
+                cout << "YES\n";
+                cout << i + 1 << " " << i + 2 << "\n";
+                return;
+            }
         }
-        ans = ans + v[i];
+        cout << "NO\n";
     }
-    sort(v.begin(), v.end());
-    if(neg & 1) ans = ans - 2 * v[0];
-    
-    cout << ans << "\n";
+
 }
 
 int32_t main()
 {
     fastIO;
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
-
+    // int t;
+    // cin >> t;
+    // while(t--)
+    // {
+    //     solve();
+    // }
+    solve();
     return 0;
 }

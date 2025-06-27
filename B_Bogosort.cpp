@@ -14,25 +14,15 @@ using namespace std;
 
 void solve()
 {
-    ll n = 1;
+    int n;
     cin >> n;
-    vll v(n);
-    
-    int neg = 0, ans = 0;
-    for(int i = 0; i<n; i++)
-    {
-        cin >> v[i];
-        if(v[i] < 0)
-        {
-            neg++;
-            v[i] *= -1;
-        }
-        ans = ans + v[i];
-    }
-    sort(v.begin(), v.end());
-    if(neg & 1) ans = ans - 2 * v[0];
-    
-    cout << ans << "\n";
+
+    vi v(n);
+    for(int i = 0; i<n; i++) cin >> v[i];
+
+    sort(v.begin(), v.end(), greater<int>());
+    for(int i = 0; i<n; i++) cout << v[i] << " ";
+    cout << "\n";
 }
 
 int32_t main()

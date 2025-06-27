@@ -12,27 +12,23 @@ using namespace std;
 #define MOD 1e9 + 7
 #define mod 998244353
 
+int bb(int n)
+{
+    int l = n;
+    while(l > 0)
+    {
+        int temp = n % 10;
+        if(temp != 0 && n % )
+    }
+}
 void solve()
 {
-    ll n = 1;
+    int n;
     cin >> n;
-    vll v(n);
-    
-    int neg = 0, ans = 0;
-    for(int i = 0; i<n; i++)
-    {
-        cin >> v[i];
-        if(v[i] < 0)
-        {
-            neg++;
-            v[i] *= -1;
-        }
-        ans = ans + v[i];
-    }
-    sort(v.begin(), v.end());
-    if(neg & 1) ans = ans - 2 * v[0];
-    
-    cout << ans << "\n";
+
+    while(!bb(n)) n++;
+
+    cout << n << "\n";
 }
 
 int32_t main()
