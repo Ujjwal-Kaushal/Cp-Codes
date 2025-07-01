@@ -12,26 +12,41 @@ using namespace std;
 #define MOD 1e9 + 7
 #define mod 998244353
 
-void solve()
-{
+bool check1100(const string &s, int pos) {
+    if (pos >= 0 && pos + 3 < s.size()) {
+        return s[pos] == '1' && s[pos + 1] == '1' && s[pos + 2] == '0' && s[pos + 3] == '0';
+    }
+    return false;
+}
+ 
+void solve() {
     string s;
     cin >> s;
-
+    int n = s.size();
     int q;
     cin >> q;
-
-    while(q--)
-    {
-        int i,v;
+ 
+    int count = 0;
+    for (int i = 0; i + 3 < n; ++i) {
+        if (check1100(s, i)) count++;
+    }
+ 
+    while (q--) {
+        int i, v;
         cin >> i >> v;
-
-        char c = s[i];
-        s.replace(s[i],1,to_string(v));
-        cout << s << " "; 
-        if(s.find("1100") != string::npos) cout << "YES\n";
-        else cout << "NO\n";
-
-        s.replace(s[i],1,to_string(c));
+        --i;
+ 
+        for (int j = i - 3; j <= i; ++j) {
+            if (check1100(s, j)) count--;
+        }
+ 
+        s[i] = v + '0';
+ 
+        for (int j = i - 3; j <= i; ++j) {
+            if (check1100(s, j)) count++;
+        }
+ 
+        cout << (count > 0 ? "YES\n" : "NO\n");
     }
 }
 
