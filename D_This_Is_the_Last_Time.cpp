@@ -36,7 +36,7 @@ void solve()
         {
             if(v[i][1] >= k)
             {
-                pq.push(v[i][2]);
+                pq.push(v[i][2]);   
             }
             ++i;
         }

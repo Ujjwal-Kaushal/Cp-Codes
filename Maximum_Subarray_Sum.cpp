@@ -14,34 +14,27 @@ using namespace std;
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
+    int n;
+    cin >> n;
 
     vi v(n);
-    for(int i = 0; i<n; i++) cin >> v[i];
-    sort(v.begin(), v.end());
-    int l = 0, r = n - 1;
-    int ans = 0;
-    while(l <= r)
+    for(int i = 0; i<n; i++)
     {
-        if(v[l] + v[r] <= x)
-        {
-            l++;
-        }
-        r--;
-        ans++;
+        cin >> v[i];
     }
-    cout << ans << "\n";
+
+    
 }
+
 int32_t main()
 {
     fastIO;
-    // int t;
-    // cin >> t;
-    // while(t--)
-    // {
-    //     solve();
-    // }
-    solve();
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        solve();
+    }
+
     return 0;
 }
