@@ -17,33 +17,43 @@ void solve()
     int n;
     cin >> n;
 
-    vector<pair<int,int>> v;
+    vi a(n), b(n);
     for(int i = 0; i<n; i++)
     {
-        int a,b;
-        cin >> a >> b;
-
-        v.pb({a,b});
+        cin >> a[i];
     }
-
-    vi last;
-    for(auto p : v) last.pb(p.second);
-
-    sort(last.begin(), last.end());
-
-    int ans = 1;
-    for(int i = 0; i<n; i++)
-    {
-        auto pos = lower_bount(last.begin(), last.end(), last[i]);
-        if(pos != v.end())
-        {
-            int po = *pos - 1;
-            int tot = 
-        }
-        
-    }
-
     
+    for(int i = 0; i<n; i++)
+    {
+        cin >> b[i];
+    }   
+    if(a[n-1] != b[n-1])
+    {
+        cout << "NO\n";
+        return;
+    }
+    vi temp;
+    for(int i = 0; i<n-1; i++)
+    {   
+        if(a[i] != b[i]) temp.push_back(i);
+    }
+
+    for(int i = 0; i<temp.size(); i++)
+    {
+        cout << a[temp[i]] << " " << a[temp[i+1]] << "\n";  
+        a[temp[i]] = a[temp[i]] ^ a[temp[i+1]];
+    }
+
+    int fl = 0;
+    for(int i = 0; i<n; i++)
+    {
+        if(a[i] != b[i])
+        {
+            fl = 1;
+            break;
+        }
+    }
+    cout << (fl ? "NO\n" : "YES\n");
 }
 
 int32_t main()

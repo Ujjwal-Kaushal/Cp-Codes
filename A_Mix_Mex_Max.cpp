@@ -17,33 +17,23 @@ void solve()
     int n;
     cin >> n;
 
-    vector<pair<int,int>> v;
+    vi v(n);
+    for(int i = 0; i<n; i++) cin >> v[i];
+
+    vector<int> temp;
     for(int i = 0; i<n; i++)
     {
-        int a,b;
-        cin >> a >> b;
-
-        v.pb({a,b});
+        if(v[i] != -1) temp.pb(v[i]);
     }
+    sort(temp.begin(), temp.end());
 
-    vi last;
-    for(auto p : v) last.pb(p.second);
-
-    sort(last.begin(), last.end());
-
-    int ans = 1;
-    for(int i = 0; i<n; i++)
+    if(temp.size() == 0)
     {
-        auto pos = lower_bount(last.begin(), last.end(), last[i]);
-        if(pos != v.end())
-        {
-            int po = *pos - 1;
-            int tot = 
-        }
-        
+        cout << "YES\n";
+        return;
     }
-
-    
+    if(temp[0] == temp[temp.size()-1] && temp[0] != 0) cout << "YES\n";
+    else cout << "NO\n";
 }
 
 int32_t main()

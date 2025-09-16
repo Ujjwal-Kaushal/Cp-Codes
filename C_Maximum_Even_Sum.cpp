@@ -14,36 +14,13 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int a,b;
+    cin >> a >> b;
 
-    vector<pair<int,int>> v;
-    for(int i = 0; i<n; i++)
-    {
-        int a,b;
-        cin >> a >> b;
+    if(a * b % 2 != 0) cout << a * b + 1 << endl;
+	else if(b % 2 == 0 && a * b % 4 == 0) cout << a * b / 2 + 2 << endl;
+	else cout << -1 << endl;
 
-        v.pb({a,b});
-    }
-
-    vi last;
-    for(auto p : v) last.pb(p.second);
-
-    sort(last.begin(), last.end());
-
-    int ans = 1;
-    for(int i = 0; i<n; i++)
-    {
-        auto pos = lower_bount(last.begin(), last.end(), last[i]);
-        if(pos != v.end())
-        {
-            int po = *pos - 1;
-            int tot = 
-        }
-        
-    }
-
-    
 }
 
 int32_t main()

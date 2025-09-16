@@ -17,33 +17,15 @@ void solve()
     int n;
     cin >> n;
 
-    vector<pair<int,int>> v;
-    for(int i = 0; i<n; i++)
-    {
-        int a,b;
-        cin >> a >> b;
-
-        v.pb({a,b});
+    vi v(n);
+    for(int i = 0; i<n; i++) {
+        cin >> v[i];
     }
 
-    vi last;
-    for(auto p : v) last.pb(p.second);
-
-    sort(last.begin(), last.end());
-
-    int ans = 1;
-    for(int i = 0; i<n; i++)
-    {
-        auto pos = lower_bount(last.begin(), last.end(), last[i]);
-        if(pos != v.end())
-        {
-            int po = *pos - 1;
-            int tot = 
-        }
-        
+    for(int i = 0; i<n; i++) {
+        cout << (n+1) - v[i] << " ";
     }
-
-    
+    cout << "\n";
 }
 
 int32_t main()
