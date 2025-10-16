@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-using namespace std;
 using namespace __gnu_pbds;
+using namespace std;
 #define int long long
 #define ll int
 #define lli long long int
@@ -16,27 +16,31 @@ using namespace __gnu_pbds;
 #define mod 998244353
 #define Oset tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 
-void solve()
-{
-    int n ;
+void solve() {
+
+    int n;
     cin >> n;
 
-    vector<pair<int,int>> v;
-    for(int i = 0; i<n; i++ ){
-        int a,b;
-        cin >> a >> b;
-        v.push_back({a,b});
+    vi v(n+1);
+    for(int i = 1; i<=n; i++) {
+        cin >> v[i];
     }
 
-    sort(v.begin(),v.end());
-
-    Oset st;
-    int ans = 0;
-    for(int i = 0; i<n; i++) {
-        ans += i - st.order_of_key(v[i].second);
-        st.insert(v[i].second);
+    vi ans(n+1);
+    ans[1] = 1;
+    int j = 2;
+    for(int i = 2; i<=n; i++) {
+        if(v[i] - v[i-1] == i) {
+            ans[i] = j;
+            j++; 
+        }
+        else {
+            int diff = v[i] - v[i-1];
+            ans[i] = ans[i - diff];
+        }
     }
-    cout << ans << "\n";
+    for(int i = 1; i<=n; i++) cout << ans[i] << " ";
+    cout << "\n";
 }
 
 int32_t main()

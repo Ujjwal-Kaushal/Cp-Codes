@@ -18,36 +18,45 @@ using namespace __gnu_pbds;
 
 void solve()
 {
-    int n ;
-    cin >> n;
+    int n, q;
+    cin >> n >> q;
 
-    vector<pair<int,int>> v;
-    for(int i = 0; i<n; i++ ){
-        int a,b;
-        cin >> a >> b;
-        v.push_back({a,b});
+    vi v(n);
+    for(int i = 0; i<n; i++) {
+        cin >> v[i];
+    }
+    vi diff(n+1, 0);
+    for(int i = 0; i<q; i++) {
+        int l,r;
+        cin >> l >> r;
+        l--; r--;
+        diff[l]++;
+        diff[r+1]--;
     }
 
-    sort(v.begin(),v.end());
+    for(int i = 1; i<n; i++) {
+        diff[i] += diff[i-1];
+    }
 
-    Oset st;
+    sort(v.begin(), v.end(), greater<int>());
+    sort(diff.begin(), diff.end(), greater<int>());
     int ans = 0;
     for(int i = 0; i<n; i++) {
-        ans += i - st.order_of_key(v[i].second);
-        st.insert(v[i].second);
+        ans = ans + (v[i] * diff[i]);
     }
     cout << ans << "\n";
+
 }
 
 int32_t main()
 {
     fastIO;
-    int t;
-    cin >> t;
-    while(t--)
-    {
+    // int t;
+    // cin >> t;
+    //while(t--)
+    //{
         solve();
-    }
+    //}
 
     return 0;
 }

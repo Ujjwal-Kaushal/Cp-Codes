@@ -1,8 +1,5 @@
 #include<bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
-using namespace __gnu_pbds;
 #define int long long
 #define ll int
 #define lli long long int
@@ -14,29 +11,19 @@ using namespace __gnu_pbds;
 #define pq_min priority_queue<int, vector<int>, greater<int>>
 #define MOD 1e9 + 7
 #define mod 998244353
-#define Oset tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 
 void solve()
 {
-    int n ;
+    int n;
     cin >> n;
 
-    vector<pair<int,int>> v;
-    for(int i = 0; i<n; i++ ){
-        int a,b;
-        cin >> a >> b;
-        v.push_back({a,b});
+    if(n % 3 == 0) cout << 0 << "\n";
+    else
+    {
+        int rem = n % 3;
+        int ans = (3-rem) % 3;
+        cout << ans << "\n";
     }
-
-    sort(v.begin(),v.end());
-
-    Oset st;
-    int ans = 0;
-    for(int i = 0; i<n; i++) {
-        ans += i - st.order_of_key(v[i].second);
-        st.insert(v[i].second);
-    }
-    cout << ans << "\n";
 }
 
 int32_t main()

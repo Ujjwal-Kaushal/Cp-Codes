@@ -14,45 +14,37 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n,m,k;
+    cin >> n >> m >> k;
 
     vi v(n);
     for(int i = 0; i<n; i++) {
         cin >> v[i];
     }
-
-    vi pref(n);
-    pref[0] = v[0];
+    
+    vi gaps;
     for(int i = 1; i<n; i++) {
-        pref[i] = (pref[i-1] + v[i]); 
+        gaps.pb(v[i] - v[i-1] - 1);
     }
-
-    int l = 0,r = 0;
-    for(int i = 1; i<n-1; i++) {
-        for(int j = i+1; j<n; j++) {
-            int x = pref[i] % 3;
-            int y = (pref[j] - pref[i]) % 3;
-            int z = (pref[n-1] - pref[j]) % 3;
-
-            if(x != y && y != z && x != z || x == y && y == z) {
-                cout << i << " " << j << "\n";
-                return;
-            }
-        }
-    } 
-    cout << "0 0\n";
+    sort(gaps.begin(), gaps.end(), greater<int>());
+    
+    int ans = v[n-1] - v[0] + 1;
+    for(int i = 0; i<k-1 && i < gaps.size(); i++) {
+        ans -= gaps[i];
+    }
+    cout << ans << "\n";
 }
 
 int32_t main()
 {
     fastIO;
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        solve();
-    }
+    // int t;
+    // cin >> t;
+    // while(t--)
+    // {
+    //     solve();
+    // }
+    solve();
 
     return 0;
 }

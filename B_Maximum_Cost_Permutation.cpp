@@ -18,30 +18,43 @@ void solve()
     cin >> n;
 
     vi v(n);
+    int c0 =0;
     for(int i = 0; i<n; i++) {
         cin >> v[i];
+        c0 += (v[i] == 0);
     }
 
-    vi pref(n);
-    pref[0] = v[0];
-    for(int i = 1; i<n; i++) {
-        pref[i] = (pref[i-1] + v[i]); 
+    vi temp(n+1,false);
+    for(int i = 0; i<n; i++) {
+        if(v[i] != 0) {
+            temp[v[i]] = true;
+        }
     }
 
-    int l = 0,r = 0;
-    for(int i = 1; i<n-1; i++) {
-        for(int j = i+1; j<n; j++) {
-            int x = pref[i] % 3;
-            int y = (pref[j] - pref[i]) % 3;
-            int z = (pref[n-1] - pref[j]) % 3;
-
-            if(x != y && y != z && x != z || x == y && y == z) {
-                cout << i << " " << j << "\n";
-                return;
+    if(c0 == 1) {
+        for(int i = 0; i<n; i++) {
+            if(v[i] == 0) {
+                for(int j = 1; j<=n; j++) {
+                    if(!temp[j]) {
+                        v[i] = j;
+                        break;  
+                    }
+                }
             }
         }
-    } 
-    cout << "0 0\n";
+    }
+
+    int l = 0, r = n-1;
+    while(l < n && v[l] == l+1) l++;
+    while(r >= 0 && v[r] == r+1) r--;
+
+    cout << max(0LL, (r-l+1)) << '\n';
+
+    
+
+    
+
+
 }
 
 int32_t main()
