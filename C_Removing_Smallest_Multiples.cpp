@@ -1,5 +1,8 @@
 #include<bits/stdc++.h>
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
+// using namespace __gnu_pbds;
 #define int long long
 #define ll int
 #define lli long long int
@@ -11,35 +14,35 @@ using namespace std;
 #define pq_min priority_queue<int, vector<int>, greater<int>>
 #define MOD 1e9 + 7
 #define mod 998244353
+#define Oset tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update>
 
 void solve()
 {
     int n;
-    cin >> n;
+    cin >> n ;
+    
+    string s;
+    cin >> s;
 
-    vi v(n);
-    for(int i = 0; i<n; i++) cin >> v[i];
+    vector<bool> vis(n+1, false);
+    int ans = 0;
+    for(int i = 1; i<=n; i++) {
+        for(int j = i; j<=n; j+=i) {
+            if(s[j-1] == '1') break;
 
-    vi bits(31, 0);
-    for(int i = 0; i<n; i++) {
-        for(int j = 30; j>=0; j--) {
-            if(v[i] & (1 << j)) {
-                bits[j]++;
-                break;
+            if(vis[j]) continue;
+            else {
+                vis[j] = true;
+                ans += i;
             }
         }
     }
-    int ans = 0;
-    for(int i = 0; i<31; i++) {
-        ans = ans + bits[i] * (bits[i] - 1)/2;
-    }
     cout << ans << "\n";
-
-    
 }
 
 int32_t main()
 {
+    fastIO;
     int t;
     cin >> t;
     while(t--)
