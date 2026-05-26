@@ -21,19 +21,21 @@ void solve()
     int n;
     cin >> n;
 
-    if(n == 2) {
-        cout << 2 << "\n";
-        return;
-    } 
-    if(n == 3) {
-        cout << 3 << "\n";
-        return;
+    int sz = 3*n;
+
+    int s = sz/3;
+    int j = 1, cnt = 0;
+    cout << j << ' ';
+    for(int i = s+1; i<=sz; i++) {
+        if(cnt == 2) {
+            ++j;
+            cout << j << ' ';
+            cnt = 0;
+        }
+        cout << i << ' ';
+        ++cnt;
     }
-    if(n % 2 == 0) {
-        cout << "0\n";
-        return;
-    }
-    cout << 1 << "\n";
+    cout << "\n";
 
 }
 

@@ -21,20 +21,18 @@ void solve()
     int n;
     cin >> n;
 
-    if(n == 2) {
-        cout << 2 << "\n";
-        return;
-    } 
-    if(n == 3) {
-        cout << 3 << "\n";
-        return;
-    }
-    if(n % 2 == 0) {
-        cout << "0\n";
-        return;
-    }
-    cout << 1 << "\n";
+    int cnt = 1;
+    cout << 1 << ' ';
+    int i = 2;
+    while(cnt != n) {
+        cout << i << ' ';
+        i = i*2;
+        
 
+
+        ++cnt;
+    }
+    cout << "\n";
 }
 
 int32_t main()
