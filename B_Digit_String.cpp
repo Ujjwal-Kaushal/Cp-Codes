@@ -5,27 +5,6 @@ void solve() {
     string s;
     cin >> s;
 
-    // stack<char> st;
-
-    // reverse(s.begin(), s.end());
-
-    // for(char c : s) {
-    //     st.push(c);
-
-    // }
-    // int ans = 0;
-    // string temp = "";
-    // while(!st.empty()) {
-    //     char c = st.top();
-    //     st.pop();
-    //     temp += c;
-        
-    //     int num = stoi(temp);
-    //     if(num % 4 == 0) {
-    //         ans += temp.size();
-    //     }
-
-    // }
     int n = s.size();
     int ans = 0;
     int fl = 0;

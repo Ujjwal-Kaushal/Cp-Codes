@@ -24,27 +24,18 @@ void solve()
             cin >> v[i][j];
     }
 
-    // for(int i = 0; i<n; i++)
-    // {
-    //     sort(v[i].begin(),v[i].end());
-    // }
-    int ans = 0;
-    for(int i = 0; i<n; i++)
-    {
-        for(int j = 0; j<m-1; j++)
-        {
-            if(v[i][j] < 0 && v[i][j+1] < 0)
-            {
-                v[i][j] = abs(v[i][j]);
-                v[i][j+1] = abs(v[i][j+1]);
-            }
+    int mn = INT_MAX;
+    int ans = 0, ng = 0;
+    for(int i = 0; i<n; i++) {
+        for(int j = 0; j<m; j++) {
+            if(v[i][j] < 0) ng++;
+            mn = min(mn, abs(v[i][j]));
+            ans += abs(v[i][j]);
+            
         }
     }
-    for(int i = 0; i<n; i++)
-    {
-        for(int j = 0; j<m; j++) ans += v[i][j];
-    }
-    cout << ans << "\n";
+    if(ng % 2) cout << ans - 2*mn << "\n";
+    else cout << ans << "\n";
 }
 int32_t main()
 {
